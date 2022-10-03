@@ -5,4 +5,23 @@
     justify-content: center;
     align-items: center;
     flex-direction: column;
+    padding: 2rem;
+}
+
+.character-amount-container {
+    display: flex;
+    align-items: center;
+}
+
+.password-display {
+    background-color: #555;
+    color: #fff;
+    padding: 1rem;
+    width: 340px;
+    height: 2rem;
+    border-radius: 0.25rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    word-break: break-all;
 }

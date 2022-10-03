@@ -1,3 +1,5 @@
 @import './global/global.css';
 @import './home/container.css';
-@import './home/form.css'
+@import './home/form.css';
+@import './home/text.css';
+@import './home/button.css';
