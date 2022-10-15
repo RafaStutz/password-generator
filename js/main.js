@@ -1,9 +1,10 @@
 const characterAmountRange = document.getElementById('characterAmountRange')
 const characterAmountNumber = document.getElementById('characterAmountNumber')
-const form = document.getElementById('passwordGeneratorForm')
 const includeUppercaseElement = document.getElementById('includeUppercase')
 const includeNumbersElement = document.getElementById('includeNumbers')
 const includeSymbolsElement = document.getElementById('includeSymbols')
+const form = document.getElementById('passwordGeneratorForm')
+const passwordDisplay = document.getElementById('passwordDisplay')
 
 const uppercaseCharCodes = arrayOfCharacters(65, 90)
 const lowercaseCharCodes = arrayOfCharacters(97, 122)
@@ -16,26 +17,9 @@ const symbolsCharCodes = arrayOfCharacters(33, 47).concat(
     arrayOfCharacters(123, 126)
 )
 
-const syncCharacterAmount = (e) => {
-    const value = e.target.value
-    characterAmountNumber.value = value
-    characterAmountRange.value = value
-} 
+characterAmountNumber.addEventListener('input', syncCharacterAmount)
+characterAmountRange.addEventListener('input', syncCharacterAmount)
 
-const generatePassword = (characterAmount, includeNumbers, includeUppercase, includeSymbols) => {
-    let charCodes = lowercaseCharCodes
-    if(includeNumbers) charCodes = charCodes.concat(numbersCharCodes)
-    if(includeUppercase) charCodes = charCodes.concat(uppercaseCharCodes)
-    if(includeSymbols) charCodes = charCodes.concat(symbolsCharCodes)
-}
-
-const arrayOfCharacters = (start, end) => {
-    const array = []
-    for(let i = start; i <= end; i++) {
-        array.push(i)
-    }
-    return array
-}
 form.addEventListener('submit', e => {
     e.preventDefault()
     const characterAmount = characterAmountNumber.value
@@ -43,7 +27,34 @@ form.addEventListener('submit', e => {
     const includeNumbers = includeNumbersElement.checked
     const includeSymbols = includeSymbolsElement.checked
     const password = generatePassword(characterAmount, includeUppercase, includeNumbers, includeSymbols)
+    passwordDisplay.innerText = password
 })
 
-characterAmountRange.addEventListener('input', syncCharacterAmount)
-characterAmountNumber.addEventListener('input', syncCharacterAmount)
+
+function generatePassword(characterAmount, includeNumbers, includeUppercase, includeSymbols) {
+    let charCodes = lowercaseCharCodes
+    if(includeNumbers) charCodes = charCodes.concat(numbersCharCodes)
+    if(includeUppercase) charCodes = charCodes.concat(uppercaseCharCodes)
+    if(includeSymbols) charCodes = charCodes.concat(symbolsCharCodes)
+
+    const passwordCharacters = []
+    for(let i = 0; i < characterAmount; i++) {
+        const characterCode = charCodes[Math.floor(Math.random() * charCodes.length)]
+        passwordCharacters.push(String.fromCharCode(characterCode))
+    }
+    return passwordCharacters.join('')
+}
+
+function arrayOfCharacters(start, end) {
+    const array = []
+    for(let i = start; i <= end; i++) {
+        array.push(i)
+    }
+    return array
+}
+
+function syncCharacterAmount(e) {
+    const value = e.target.value
+    characterAmountNumber.value = value
+    characterAmountRange.value = value
+  }
