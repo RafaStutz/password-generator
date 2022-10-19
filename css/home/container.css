@@ -26,3 +26,14 @@
     word-break: break-all;
     margin: 1rem;
 }
+
+input[type='range'] {
+    margin: auto;
+    -webkit-appearance: none;
+    position: relative;
+    overflow: hidden;
+    height: 40px;
+    width: 200px;
+    cursor: pointer;
+    border-radius: 0;
+}
