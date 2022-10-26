@@ -56,3 +56,20 @@
     border-radius: 50%;
     box-shadow: inset 0px 1px 2px #909090;
 }
+
+.character-amount-container .slider-thumb::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%,-50%);
+    width: 0.6em;
+    height: 0.6em;
+    background: #333;
+    border-radius: inherit;
+    transition: 0.3s;
+}
+
+.character-amount-container:hover .slider-thumb::before {
+    background: #3cd184;
+}
